@@ -10,4 +10,4 @@ Fortunately I found Josh Long's presentation. Enjoy it.
 "Bootiful" Applications with Spring Boot<br/>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/HCyYEVRZISk" frameborder="0" allowfullscreen></iframe><br/>
 Getting started with Spring Cloud by Josh Long<br/>
-<iframe width="320" height="266" src="https://www.youtube.com/embed/SFDYdslOvu8" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/SFDYdslOvu8" frameborder="0" allowfullscreen></iframe>
