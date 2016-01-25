@@ -19,13 +19,14 @@ Simple design, fast implementation:
 
 ![4](https://lh3.googleusercontent.com/-17N5bymfRAE/VqYN-bEFbpI/AAAAAAAAEVY/6-d2dyyt9fo/s640-Ic42/IMG_20160123_100916.jpg)
 ![5](https://lh3.googleusercontent.com/-txJOno4MEw8/VqYN_O9jOwI/AAAAAAAAEVk/i2F3Lmq99-0/s640-Ic42/IMG_20160123_101046.jpg)
+![6](https://lh3.googleusercontent.com/-Wp02wO9T798/VqYOAL-8rwI/AAAAAAAAEVo/s_NMNLdCE_Y/s640-Ic42/IMG_20160123_101124.jpg)
 
 And now...
 
-![6](https://lh3.googleusercontent.com/-w6sAGqKM_hs/VqYOCJXsTXI/AAAAAAAAEWA/4dTHIXgjFZo/s640-Ic42/IMG_20160123_101210.jpg)
+![7](https://lh3.googleusercontent.com/-w6sAGqKM_hs/VqYOCJXsTXI/AAAAAAAAEWA/4dTHIXgjFZo/s640-Ic42/IMG_20160123_101210.jpg)
 
 Yeah..
 
-![7](https://lh3.googleusercontent.com/-6gLQB-sl6Es/VqYOCfPc72I/AAAAAAAAEV8/KJd8Nt0ZKaI/s640-Ic42/IMG_20160123_101450.jpg)
+![8](https://lh3.googleusercontent.com/-6gLQB-sl6Es/VqYOCfPc72I/AAAAAAAAEV8/KJd8Nt0ZKaI/s640-Ic42/IMG_20160123_101450.jpg)
 
 Duct tape saved the day!
