@@ -1,64 +1,87 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Lotto</title>
+function init(){
+    document.getElementById('loadCSVFile').addEventListener('click', clickFileInput, false);
+    document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+  }
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.deep_purple-pink.min.css">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-          <h3>Lotto</h3>
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-      </header>
-      <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="overview">
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text">
-                <h4>Losowanie z pliku excel</h4>
-                <!-- Numeric Textfield with Floating Label -->
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input id="limit" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" value="400">
-                <label class="mdl-textfield__label" for="sample4">Limit...</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <button id="loadCSVFile" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                    Załaduj plik CSV
-                </button>
-                <input id="fileInput" type="file" name="file" hidden/>
-              </div>
-              <div>
-                  <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                    <span>Liczba wierszy: </span><span><strong id="rowsNumber">?</strong></string></span>
-                  </div>
-                  <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                    <span>Liczba nie pustych wierszy: </span><span><strong id="nonEmptyRowsNumber">?</strong></string></span>
-                  </div>
-                
-              </div>
-            </div>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn3">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
-      </main>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
-    <script src="script.js"></script>
-  </body>
-</html>
+  function clickFileInput() {
+    document.getElementById('fileInput').click();
+  }
+  
+  function handleFileSelect(event) {
+    const reader = new FileReader()
+    reader.onload = handleFileLoad;
+    reader.readAsText(event.target.files[0])
+  }
+
+  function isNotBlank(input) {
+    return (input && input.trim() !== "");
+}
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+  
+  function handleFileLoad(event){
+    console.log("handleFIleLoad...")
+    var lines = event.target.result.split(/\r?\n/)
+    var nonEmptyLines = lines.filter(isNotBlank)
+    console.log( document.getElementById('rowsNumber'));
+    document.getElementById('rowsNumber').textContent = lines.length
+    document.getElementById('nonEmptyRowsNumber').textContent = nonEmptyLines.length
+    var limitAsString = document.getElementById('limit').value;
+    console.log("Limit as string: " + limitAsString)
+    var limit = parseInt(limitAsString);
+
+    console.log("Limit: " + limit)
+    console.log(typeof limit)
+
+    var lineNumbers = getLineNumber(nonEmptyLines)
+    console.log(lineNumbers)
+
+    var shuffledLineNumber = shuffle(lineNumbers)
+    console.log(shuffledLineNumber)
+
+    var output = generateOutput(nonEmptyLines, shuffledLineNumber, limit)
+
+    console.log(output)
+
+    download("output.csv", output.join("\r\n"))
+  }
+
+  function generateOutput(lines, lineNumbers, limit) {
+    var result = new Array(limit)
+    for (var i = 0; i < limit; i++) {
+        result[i] = lines[lineNumbers[i]]
+    }
+    return result;
+  }
+
+  function getLineNumber(lines) {
+    var result = new Array(lines.length);
+    for(i = 0; i < lines.length; i++) {
+        result[i] = i;
+    }
+    return result;
+  }
+
+  function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+  
+  init();
